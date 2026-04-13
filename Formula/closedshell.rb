@@ -26,9 +26,9 @@ class Closedshell < Formula
     templates_src = share/"closedshell/templates"
     return unless templates_src.exist?
 
-    templates_dst = Pathname.new(Dir.home)/".closedshell"/"templates"
-    templates_dst.mkpath
-    FileUtils.cp_r(Dir["#{templates_src}/*"], templates_dst, remove_destination: true)
+    templates_dst = "#{Dir.home}/.closedshell/templates"
+    system "mkdir", "-p", templates_dst
+    system "cp", "-R", *Dir["#{templates_src}/*"], templates_dst
   end
 
   def caveats
